@@ -1,5 +1,4 @@
 # ignore .env file with API TOKEN from Pushbullet service
 /.env
-/.ides
-/.ides/workspace.xml
+/.idea
 
