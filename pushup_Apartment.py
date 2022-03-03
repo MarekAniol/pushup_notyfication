@@ -38,4 +38,6 @@ def main():
 
 datas_apartment = load_json()
 prices_sorted = list(datas_apartment.values())
-main()
+
+if __name__ == "__main__":
+    main()
