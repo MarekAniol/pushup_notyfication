@@ -1,4 +1,2 @@
 # ignore .env file with API TOKEN from Pushbullet service
 /.env
-/.idea
-/__pycache__
