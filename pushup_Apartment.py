@@ -1,8 +1,8 @@
 from libraries import *
-import os
+from os import getcwd
 
 
-HERE = os.getcwd()
+HERE = getcwd()
 TOKEN = config("PUSH_UP_TOKEN")
 
 
