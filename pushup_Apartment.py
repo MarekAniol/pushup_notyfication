@@ -3,6 +3,7 @@ from os import getcwd
 
 HERE = getcwd()
 TOKEN = config("PUSH_UP_TOKEN")
+pb = Pushbullet(TOKEN)
 
 
 def get_apartments(www):
@@ -23,11 +24,8 @@ def write_json(data):
 
 def load_apartments_id():
     """Load all offers that was sending to phone as notification."""
-    print(HERE + "/found_products.json")
-
     with open(HERE + r"/found_products.json", "r") as products_file:
         d = json.load(products_file)
-        print(d)
         return d
 
 
@@ -38,7 +36,6 @@ def check_id(apart, apart_price, ids):
     price_digit = int(apart_price.replace(" zł", "").replace(" ", ""))
     apart_id = apart.select_one("table")["data-id"]
     if apart_id not in ids:
-
         ids[apart_id] = price_digit
         print(ids)
         write_json(ids)
@@ -58,12 +55,10 @@ def main():
         price = apartment.select_one(".td-price .price strong").text
 
         if check_id(apartment, price, apartment_ids):
-            print("Check_id is True")
             pb.push_link(title, link, price)
 
 
 if __name__ == "__main__":
-    pb = Pushbullet(TOKEN)
     url = "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/wroclaw/?" \
           "search%5Bfilter_float_price%3Afrom%5D=400000&search%5Bfilter_enum_market" \
           "%5D%5B0%5D=secondary&search%5Bfilter_float_m%3Ato%5D=40&search%5Bfilter_enum_rooms%5D%5B0%5D=two"
