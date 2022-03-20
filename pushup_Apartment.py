@@ -48,6 +48,9 @@ def main():
     """Set title, price and link for phone push up notification.
     Check by apart_id if offer was visited.
     """
+    url = "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/wroclaw/?" \
+          "search%5Bfilter_float_price%3Afrom%5D=400000&search%5Bfilter_enum_market" \
+          "%5D%5B0%5D=secondary&search%5Bfilter_float_m%3Ato%5D=40&search%5Bfilter_enum_rooms%5D%5B0%5D=two"
     apartment_ids = load_apartments_id()
     for apartment in get_apartments(url):
         title = apartment.select_one(".title-cell h3").text.strip()
@@ -59,7 +62,4 @@ def main():
 
 
 if __name__ == "__main__":
-    url = "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/wroclaw/?" \
-          "search%5Bfilter_float_price%3Afrom%5D=400000&search%5Bfilter_enum_market" \
-          "%5D%5B0%5D=secondary&search%5Bfilter_float_m%3Ato%5D=40&search%5Bfilter_enum_rooms%5D%5B0%5D=two"
     main()
